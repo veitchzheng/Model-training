@@ -27,7 +27,7 @@ def run_complete_example():
     device = torch.device(Config.DEVICE)
     tokenizer = AutoTokenizer.from_pretrained(Config.BERT_PATH)
     model = create_model(Config.BERT_PATH)
-    model.load_state_dict(torch.load(Config.MODEL_PATH, map_location=device))
+    model.load_state_dict(torch.load(Config.MODEL_PATH, map_location=device, weights_only=True))
     model.to(device)
     
     # 测试预测

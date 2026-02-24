@@ -62,6 +62,7 @@ def train_model():
     print(f"Loaded {len(df)} samples")
     
     # 划分训练集和验证集
+    # random_state=42 确保每次运行时数据划分保持一致，便于实验复现
     df_train, df_val = train_test_split(df, test_size=0.2, random_state=42)
     print(f"Train size: {len(df_train)}, Val size: {len(df_val)}")
     

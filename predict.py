@@ -57,7 +57,7 @@ if __name__ == "__main__":
     # 加载模型和tokenizer
     tokenizer = AutoTokenizer.from_pretrained(Config.BERT_PATH)
     model = create_model(Config.BERT_PATH)
-    model.load_state_dict(torch.load(Config.MODEL_PATH))
+    model.load_state_dict(torch.load(Config.MODEL_PATH, weights_only=True))
     device = torch.device(Config.DEVICE)
     model.to(device)
     

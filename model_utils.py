@@ -46,18 +46,12 @@ def load_model(export_path, device):
     tokenizer_path = os.path.join(export_path, "tokenizer")
     tokenizer = AutoTokenizer.from_pretrained(tokenizer_path)
     
-    # 从预训练的BERT模型创建模型（使用配置）
-    config_path = os.path.join(export_path, "config.json")
-    if os.path.exists(config_path):
-        # 如果存在配置文件，使用它来创建模型
-        model = create_model(Config.BERT_PATH)
-    else:
-        # 否则使用默认的BERT路径
-        model = create_model(Config.BERT_PATH)
+    # 使用默认的BERT路径创建模型
+    model = create_model(Config.BERT_PATH)
     
     # 加载模型权重
     model_path = os.path.join(export_path, "model.pth")
-    model.load_state_dict(torch.load(model_path, map_location=device))
+    model.load_state_dict(torch.load(model_path, map_location=device, weights_only=True))
     model.to(device)
     model.eval()
     
